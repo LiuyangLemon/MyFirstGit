@@ -1,0 +1,31 @@
+---
+version: 2.0
+ 
+#构建环境
+env:
+  label: BPIT_Build_VM
+ 
+#构建参数，构建命令可通过环境变量使用
+params:
+  - name: projectName
+    value: ctsReport
+ 
+#构建步骤
+steps:
+  PRE_BUILD: # 构建准备:下载代码
+    - checkout
+  BUILD: # 构建执行
+    - build_execute:
+        command: "sh ${projectName}/build.sh" # 构建命令，如sh build.sh 或 make
+        check:
+            sourcecheck:
+              - project_type: maven
+                project_dir: ./ctsReport
+            dependency:
+              - tool_type: maven
+                project_dir: ./ctsReport
+                skip_plugin: true
+  POST_BUILD:  # 构建后
+    - upload_cloud_artifact: #发布到云龙cloudArtifact(云龙部署专用)
+        file_path: ${projectName}/target/${projectName}-*.war
+    - version_set

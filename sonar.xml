@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+ 	<!-- <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.3.RELEASE</version>
+	</parent>  -->
+	<groupId>com.cts.sonar</groupId>
+	<artifactId>sonar</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<build>
+	<plugins>
+		  <!-- <plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>2.7.1</version>
+			<dependencies>
+				<dependency>
+					<groupId>org.sonarsource.scanner.api</groupId>
+					<artifactId>sonar-scanner-api</artifactId>
+					<version>2.9.0.887</version>
+				</dependency>
+			</dependencies>
+		</plugin> -->
+		
+		 <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                 <!-- <version>3.6.0.1398</version> --> 
+   <version>3.2</version> 
+            </plugin> 
+ 				
+	</plugins>
+</build>
+	<profiles>
+	<profile>
+		<id>sonar</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>	
+		</activation>
+		<properties>
+
+
+
+
+<sonar.projectBaseDir></sonar.projectBaseDir>			
+<sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+<pmd.runargs.threads>8</pmd.runargs.threads>
+<sonar.host.url>http://10.244.220.71/sonar</sonar.host.url> 
+<!--
+<sonar.host.url>http://10.93.208.111/sonar</sonar.host.url>
+ -->
+<sonar.login>admin</sonar.login>
+<sonar.password>admin</sonar.password>
+<sonar.projectVersion>2</sonar.projectVersion>
+<sonar.language>java</sonar.language>
+<sonar.profile>质量红线</sonar.profile>
+<sonar.sources>other</sonar.sources>
+<sonar.projectBaseDir>C:\Users\lwx532288\Desktop\0319\his\HiSupport</sonar.projectBaseDir>
+<sonar.projectKey>gcJalor_java</sonar.projectKey>
+<sonar.projectName>gcJalor_java</sonar.projectName>
+<sonar.scm.disabled>true</sonar.scm.disabled>
+<fortify.skip>true</fortify.skip>
+<dbcheck.skip>true</dbcheck.skip>
+<pmd.skip>false</pmd.skip>
+<sonar.buildbreaker.skip>true</sonar.buildbreaker.skip>
+<fortify.install.location>/data01/app/fortify</fortify.install.location>
+		
+			
+		 	<!--
+			<sonar.java.binaries>./target/sonar</sonar.java.binaries>
+		-->
+		</properties>
+	</profile> 
+	
+	</profiles>
+</project>

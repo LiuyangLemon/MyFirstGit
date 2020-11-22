@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <localRepository>/usr1/maven/repository</localRepository>
+
+  <servers>
+    <server>
+      <id>artifactory-dg</id>
+      <username>xxxxxxxx</username>
+      <password>xxxxxxxx</password>
+    </server>
+	<server>
+      <id>artifactory-maven</id>
+	  <configuration>
+		<httpConfiguration>
+			<all>
+				<connectionTimeout>120000</connectionTimeout>
+				<readTimeout>120000</readTimeout>
+			</all>
+		</httpConfiguration>
+	  </configuration>
+    </server>
+  </servers>
+  <mirrors>
+    <mirror>
+      <id>artifactory-maven-group</id>
+      <mirrorOf>*,!artifactory-maven,!dmz-maven,!artifactory-plugin,!huawei-central-maven,!huawei-central-plugin</mirrorOf>
+      <name>Artifactory Maven</name>
+      <url>http://cmc.centralrepo.rnd.huawei.com/maven/</url>
+	  <!-- <url>http://dg.artifact.huawei.com/artifactory/artifactory/maven-group/</url> -->
+    </mirror>
+  </mirrors>
+  <profiles>
+    <profile>
+      <id>internal</id>
+      <repositories>
+		<repository>
+			<id>artifactory-maven</id>
+			<url>http://dg.artifact.huawei.com/artifactory/maven-local-group/</url>     
+		 </repository>
+		 <repository>
+			<id>huawei-central-maven</id>
+			<url>http://cmc.centralrepo.rnd.huawei.com/maven/</url>     
+		 </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>artifactory-plugin</id>
+          <name>Nexus plugins</name>
+          <url>http://dg.artifact.huawei.com/artifactory/maven-local-group/</url>
+        </pluginRepository>
+		<pluginRepository>
+          <id>huawei-central-plugin</id>
+          <name>huawei central plugin</name>
+          <url>http://cmc.centralrepo.rnd.huawei.com/maven/</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>internal</activeProfile>
+  </activeProfiles>
+</settings>
